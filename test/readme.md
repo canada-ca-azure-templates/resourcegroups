@@ -1,7 +1,11 @@
-Manual execution of validation does like this:
+# Manually running validation
 
-..\..\..\Core\deployments\scripts\manual-copy.ps1 -templateLibrarySrc ..\template\ -templateLibraryDst resourcegroups/bernard-dev -storageRG PwS2-Infra-Storage-RG -storageAccountName azpwsdeploytpnjitlh3orvq -containerName library-dev
+To manual validate the template:
 
-then
+1. Login to validation subscription
+2. Commit changes to the dev branch
+3. Run the following command:
 
-.\validate.ps1 -templateLibraryName resourcegroups -templateLibraryVersion bernard-dev
+```powershell
+.\validate.ps1
+```
