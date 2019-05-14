@@ -76,12 +76,12 @@ The following security controls can be met through configuration of this templat
 
 ## History
 
-| Date     | Release  | Change                                                                                                                     |
-| -------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
-| 20181120 |          | Adding helpers folder and getParameters.json template to provide method to read parameter files from parent link template. |
-| 20181211 |          | Updates deploy.ps1 to make it more flexible and resilient.                                                                 |
-| 20181214 |          | Implementing new template name as template.json                                                                            |
-| 20190128 |          | Added optional parameter to lock resourcegroup                                                                             |
-| 20190205 |          | Cleanup template folder                                                                                                    |
-| 20190501 |          | Update documentation and create latest folder                                                                              |
-| 20190514 | 20190514 | Move to new github structure                                                                                               |
+| Date     | Release                                                                               | Change                                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 20181120 |                                                                                       | Adding helpers folder and getParameters.json template to provide method to read parameter files from parent link template. |
+| 20181211 |                                                                                       | Updates deploy.ps1 to make it more flexible and resilient.                                                                 |
+| 20181214 |                                                                                       | Implementing new template name as template.json                                                                            |
+| 20190128 |                                                                                       | Added optional parameter to lock resourcegroup                                                                             |
+| 20190205 |                                                                                       | Cleanup template folder                                                                                                    |
+| 20190501 |                                                                                       | Update documentation and create latest folder                                                                              |
+| 20190514 | [20190514](https://github.com/canada-ca-azure-templates/resourcegroups/tree/20190514) | Move to new github structure                                                                                               |
