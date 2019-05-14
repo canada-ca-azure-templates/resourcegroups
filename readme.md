@@ -27,21 +27,21 @@ The following security controls can be met through configuration of this templat
         "rgNames": {
             "value": [
                 {
-                    "resourceGroup": "rgCoreTestLock",
-                    "lock": "CanNotDelete"
+                    "resourceGroup": "PwS2-validate-resourcegroups-1-RG"
                 },
                 {
-                    "resourceGroup": "rgCoreTestNoLock"
+                    "resourceGroup": "PwS2-validate-resourcegroups-2-RG"
                 }
             ]
         },
         "tagValues": {
             "value": {
-                "businessOwner": "PSPC-CCC",
-                "costCenter": "PSPC-EA",
-                "deploymentStage": "Sandbox",
-                "dataProfile": "Unclassified",
-                "version": "0.1"
+                "Owner": "build.pipeline@tpsgc-pwgsc.gc.ca",
+                "CostCenter": "PSPC-EA",
+                "Enviroment": "Validate",
+                "Classification": "Unclassified",
+                "Organizations": "PSPC-CCC-E&O",
+                "DeploymentVersion": "2018-12-12-01"
             }
         }
     }
