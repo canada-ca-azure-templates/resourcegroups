@@ -1,4 +1,4 @@
-# DNS
+# Resource Groups
 
 ## Introduction
 
@@ -27,21 +27,21 @@ The following security controls can be met through configuration of this templat
         "rgNames": {
             "value": [
                 {
-                    "resourceGroup": "rgCoreTestLock",
-                    "lock": "CanNotDelete"
+                    "resourceGroup": "PwS2-validate-resourcegroups-1-RG"
                 },
                 {
-                    "resourceGroup": "rgCoreTestNoLock"
+                    "resourceGroup": "PwS2-validate-resourcegroups-2-RG"
                 }
             ]
         },
         "tagValues": {
             "value": {
-                "businessOwner": "PSPC-CCC",
-                "costCenter": "PSPC-EA",
-                "deploymentStage": "Sandbox",
-                "dataProfile": "Unclassified",
-                "version": "0.1"
+                "Owner": "build.pipeline@tpsgc-pwgsc.gc.ca",
+                "CostCenter": "PSPC-EA",
+                "Enviroment": "Validate",
+                "Classification": "Unclassified",
+                "Organizations": "PSPC-CCC-E&O",
+                "DeploymentVersion": "2018-12-12-01"
             }
         }
     }
@@ -76,11 +76,12 @@ The following security controls can be met through configuration of this templat
 
 ## History
 
-| Date     | Change                                                                                                                     |
-| -------- | -------------------------------------------------------------------------------------------------------------------------- |
-| 20181120 | Adding helpers folder and getParameters.json template to provide method to read parameter files from parent link template. |
-| 20181211 | Updates deploy.ps1 to make it more flexible and resilient.                                                                 |
-| 20181214 | Implementing new template name as template.json                                                                            |
-| 20190128 | Added optional parameter to lock resourcegroup                                                                             |
-| 20190205 | Cleanup template folder                                                                                                    |
-| 20190501 | Update documentation and create latest folder                                                                              |
+| Date     | Release  | Change                                                                                                                     |
+| -------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 20181120 |          | Adding helpers folder and getParameters.json template to provide method to read parameter files from parent link template. |
+| 20181211 |          | Updates deploy.ps1 to make it more flexible and resilient.                                                                 |
+| 20181214 |          | Implementing new template name as template.json                                                                            |
+| 20190128 |          | Added optional parameter to lock resourcegroup                                                                             |
+| 20190205 |          | Cleanup template folder                                                                                                    |
+| 20190501 |          | Update documentation and create latest folder                                                                              |
+| 20190514 | 20190514 | Move to new github structure                                                                                               |
