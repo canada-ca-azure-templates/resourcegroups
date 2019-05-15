@@ -40,7 +40,7 @@ Write-Host "Starting $templateLibraryName validation deployment...";
 $validationURL = getValidationURL
 New-AzureRmDeployment -Location canadacentral -Name "validate-$templateLibraryName-template" -TemplateUri $validationURL -TemplateParameterFile (Resolve-Path "$PSScriptRoot\parameters\validate.parameters.json") -Verbose
 
-$provisionningState = (Get-AzureRmResourceGroupDeployment -ResourceGroupName PwS2-validate-$templateLibraryName-RG -Name "validate-$templateLibraryName-template").ProvisioningState
+$provisionningState = (Get-AzureRmDeployment -Location canadacentral -Name "validate-$templateLibraryName-template").ProvisioningState
 
 if ($provisionningState -eq "Failed") {
     Write-Host  "Test deployment failed..."
