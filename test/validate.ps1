@@ -71,7 +71,7 @@ if (-not $doNotCleanup) {
 # Validating server template
 Write-Host "Starting $templateLibraryName validation deployment...";
 
-New-AzureRmDeployment -Location -Name "validate-$templateLibraryName-template" -TemplateUri $validationURL -TemplateParameterFile (Resolve-Path "$PSScriptRoot\parameters\validate.parameters.json") -Verbose
+New-AzureRmDeployment -Location canadacentral -Name "validate-$templateLibraryName-template" -TemplateUri $validationURL -TemplateParameterFile (Resolve-Path "$PSScriptRoot\parameters\validate.parameters.json") -Verbose
 
 $provisionningState = (Get-AzureRmDeployment -Name "validate-$templateLibraryName-template").ProvisioningState
 
