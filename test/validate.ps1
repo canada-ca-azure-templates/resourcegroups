@@ -37,18 +37,19 @@ if (-not $devopsCICD) {
     $currentBranch = git rev-parse --abbrev-ref HEAD
 
     if ($currentBranch -eq 'master') {
-        $confirmation = Read-Host "You are working off the master branch... are you sure you want to validate the template from here? Switch to the dev branch is recommended. Continue? (y/n)"
-        if ($confirmation -ne 'y') {
-            exit
-        }
+        Write-Host "You are working off the master branch... Validation will happen against the github master branch code and will not include any changes you may have made."
+        Write-Host "If you want to walidate changes you have made make sure to create a new branch and push those to the remote github server with something like:"
+        Write-Host ""
+        Write-Host "git branch dev ; git add ..\. ; git commit -m "Update validation" ; git push -u origin dev"
+    }
+    else {
+        # Make sure we update code to git
+        # git branch dev ; git checkout dev ; git pull origin dev
+        git add ..\. ; git commit -m "Update validation" ; git push -u origin $currentBranch
     }
 
     $validationURL = getValidationURL
     $baseParametersURL = getBaseParametersURL
-
-    # Make sure we update code to git
-    # git branch dev ; git checkout dev ; git pull origin dev
-    git add ..\. ; git commit -m "Update validation" ; git push origin $currentBranch
 }
 
 if ($subscription -ne "") {
@@ -63,8 +64,11 @@ if (-not $doNotCleanup) {
     if ($resourceGroup) {
         Write-Host "Cleanup old $templateLibraryName template validation resources if needed..."
 
-        Remove-AzureRmResourceGroup -Name PwS2-validate-resourcegroups-1-RG -Verbose -Force
-        Remove-AzureRmResourceGroup -Name PwS2-validate-resourcegroups-2-RG -Verbose -Force
+        Remove-AzureRmResourceGroup -Name PwS2-validate-resourcegroups-1-RG -Verbose -Force -AsJob
+        Remove-AzureRmResourceGroup -Name PwS2-validate-resourcegroups-2-RG -Verbose -Force -AsJob
+
+        Write-Host "Waiting for parallel RG deletion jobs to finish..."
+        Get-Job | Wait-Job
     }
 }
 
@@ -75,14 +79,17 @@ New-AzureRmDeployment -Location canadacentral -Name "validate-$templateLibraryNa
 
 $provisionningState = (Get-AzureRmDeployment -Name "validate-$templateLibraryName-template").ProvisioningState
 
-if ($provisionningState -eq "Failed") {
-    Write-Host  "Test deployment failed..."
-}
-
 # Cleanup validation resource content
 if (-not $doNotCleanup) {
     Write-Host "Cleanup $templateLibraryName template validation resources...";
 
-    Remove-AzureRmResourceGroup -Name PwS2-validate-resourcegroups-1-RG -Verbose -Force
-    Remove-AzureRmResourceGroup -Name PwS2-validate-resourcegroups-2-RG -Verbose -Force
+    Remove-AzureRmResourceGroup -Name PwS2-validate-resourcegroups-1-RG -Verbose -Force -AsJob
+    Remove-AzureRmResourceGroup -Name PwS2-validate-resourcegroups-2-RG -Verbose -Force -AsJob
+
+    Write-Host "Waiting for parallel RG deletion jobs to finish..."
+    Get-Job | Wait-Job
+}
+
+if ($provisionningState -eq "Failed") {
+    throw  "Validation deployment failed..."
 }
